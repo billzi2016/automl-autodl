@@ -3,8 +3,8 @@ try:
 except ImportError:  # pragma: no cover
     CatBoostClassifier = None
 
-from automl.common import build_missing_dependency_result, run_grid_search
 from utils.device_utils import build_catboost_runtime_params
+from utils.train_utils import build_missing_dependency_result, run_grid_search
 
 import config
 

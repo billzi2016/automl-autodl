@@ -43,7 +43,7 @@ def main() -> None:
 
     results = []
 
-    for model_name in config.ENABLED_MODELS:
+    for model_name in config.AUTOML_MODELS:
         # 每个模型的训练逻辑拆到独立文件，入口层只做调度和结果汇总。
         runner = MODEL_RUNNERS[model_name]
         print(f"\nRunning model: {model_name}")
@@ -51,7 +51,7 @@ def main() -> None:
         results.append(result)
 
     print_result_summary(results)
-    save_results(results, config.RESULTS_PATH)
+    save_results(results, config.AUTOML_RESULTS_PATH)
 
 
 if __name__ == "__main__":

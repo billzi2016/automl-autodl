@@ -1,6 +1,6 @@
 from sklearn.svm import SVC
 
-from automl.common import run_grid_search
+from utils.train_utils import run_grid_search
 
 import config
 

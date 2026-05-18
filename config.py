@@ -5,7 +5,8 @@ BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
 OUTPUT_DIR = BASE_DIR / "outputs"
 TRAIN_DATA_PATH = DATA_DIR / "application_train.csv"
-RESULTS_PATH = OUTPUT_DIR / "grid_search_results.json"
+AUTOML_RESULTS_PATH = OUTPUT_DIR / "automl_grid_search_results.json"
+AUTODL_RESULTS_PATH = OUTPUT_DIR / "autodl_training_results.json"
 
 TARGET_COLUMN = "TARGET"
 
@@ -52,7 +53,7 @@ SCALE_COLUMNS = [
     "AMT_REQ_CREDIT_BUREAU_YEAR",
 ]
 
-ENABLED_MODELS = [
+AUTOML_MODELS = [
     "logistic_regression",
     "svm",
     "knn",
@@ -68,6 +69,14 @@ ENABLED_MODELS = [
     "catboost_model",
 ]
 
+AUTODL_MODELS = [
+    "mlp",
+    "blstm",
+    "cnn1d",
+    "tabnet",
+    "transformer",
+]
+
 CV_FOLDS = 3
 GRIDSEARCH_N_JOBS = -1
 RANDOM_STATE = 42
@@ -79,3 +88,21 @@ SCORING = {
 }
 REFIT_METRIC = "roc_auc"
 MISSING_CATEGORY_VALUE = "Unknown"
+
+# 深度学习部分统一复用这一组配置，便于后续整体调参。
+AUTODL_VALIDATION_SIZE = 0.2
+AUTODL_BATCH_SIZE = 512
+AUTODL_EPOCHS = 12
+AUTODL_LEARNING_RATE = 1e-3
+AUTODL_WEIGHT_DECAY = 1e-4
+AUTODL_NUM_WORKERS = 0
+AUTODL_HIDDEN_DIM = 128
+AUTODL_DROPOUT = 0.2
+AUTODL_EARLY_STOPPING_PATIENCE = 3
+AUTODL_SEQUENCE_EMBED_DIM = 64
+AUTODL_NUM_HEADS = 4
+AUTODL_NUM_TRANSFORMER_LAYERS = 2
+
+# 保留别名，避免入口脚本在迁移期间失效。
+ENABLED_MODELS = AUTOML_MODELS
+RESULTS_PATH = AUTOML_RESULTS_PATH

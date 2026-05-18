@@ -1,6 +1,6 @@
 from sklearn.linear_model import LogisticRegression
 
-from automl.common import run_grid_search
+from utils.train_utils import run_grid_search
 
 import config
 

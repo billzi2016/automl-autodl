@@ -1,6 +1,6 @@
 from sklearn.neighbors import KNeighborsClassifier
 
-from automl.common import run_grid_search
+from utils.train_utils import run_grid_search
 
 
 def train_model(features, target):
