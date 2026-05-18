@@ -87,6 +87,12 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
+Build Docker image:
+
+```bash
+docker build -t automl-autodl .
+```
+
 Run AutoML:
 
 ```bash
@@ -99,8 +105,23 @@ Run AutoDL:
 python autodl/train.py
 ```
 
+Run AutoML with Docker:
+
+```bash
+docker run --rm automl-autodl
+```
+
+Run AutoDL with Docker:
+
+```bash
+docker run --rm automl-autodl python autodl/train.py
+```
+
 ## Notes
 
 - `data/application_train.csv` is kept in the repository as a sample dataset.
 - Other generated CSV files under `data/` are ignored by `.gitignore`.
 - Output result files are written to `outputs/`.
+- Runtime device selection is handled inside Python code, not hardcoded in the Dockerfile.
+- In containerized environments, the project can automatically switch between `CUDA` and `CPU` when the runtime exposes NVIDIA devices.
+- `MPS` detection is still part of the project logic, but Apple Silicon GPU execution is intended for native host runs instead of standard Linux Docker containers.
