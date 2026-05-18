@@ -1,0 +1,17 @@
+# Python cache files
+__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+
+# macOS files
+.DS_Store
+
+# Generated outputs
+outputs/
+
+# Keep one sample dataset, ignore other CSV files under data
+data/*.csv
+!data/application_train.csv

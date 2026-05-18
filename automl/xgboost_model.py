@@ -4,6 +4,7 @@ except ImportError:  # pragma: no cover
     XGBClassifier = None
 
 from automl.common import build_missing_dependency_result, run_grid_search
+from utils.device_utils import build_xgboost_runtime_params
 
 import config
 
@@ -17,13 +18,15 @@ def train_model(features, target):
             reason="xgboost is not installed.",
         )
 
+    runtime_params = build_xgboost_runtime_params()
+
     # XGBoost 本体显式设成单线程，避免和外层参数搜索重复抢 CPU。
     estimator = XGBClassifier(
         objective="binary:logistic",
         eval_metric="logloss",
         random_state=config.RANDOM_STATE,
         n_jobs=1,
-        tree_method="hist",
+        **runtime_params,
     )
     param_grid = {
         "n_estimators": [200, 400],

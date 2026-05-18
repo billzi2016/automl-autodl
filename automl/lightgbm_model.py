@@ -4,6 +4,7 @@ except ImportError:  # pragma: no cover
     LGBMClassifier = None
 
 from automl.common import build_missing_dependency_result, run_grid_search
+from utils.device_utils import build_lightgbm_runtime_params
 
 import config
 
@@ -17,12 +18,15 @@ def train_model(features, target):
             reason="lightgbm is not installed.",
         )
 
+    runtime_params = build_lightgbm_runtime_params()
+
     # LightGBM 同样固定成单线程，把并行资源让给 GridSearchCV。
     estimator = LGBMClassifier(
         objective="binary",
         random_state=config.RANDOM_STATE,
         n_jobs=1,
         verbose=-1,
+        **runtime_params,
     )
     param_grid = {
         "n_estimators": [200, 400],

@@ -4,6 +4,7 @@ except ImportError:  # pragma: no cover
     CatBoostClassifier = None
 
 from automl.common import build_missing_dependency_result, run_grid_search
+from utils.device_utils import build_catboost_runtime_params
 
 import config
 
@@ -17,12 +18,15 @@ def train_model(features, target):
             reason="catboost is not installed.",
         )
 
+    runtime_params = build_catboost_runtime_params()
+
     # CatBoost 线程数也压成 1，避免和外层搜索同时并行。
     estimator = CatBoostClassifier(
         random_seed=config.RANDOM_STATE,
         verbose=0,
         thread_count=1,
         loss_function="Logloss",
+        **runtime_params,
     )
     param_grid = {
         "iterations": [200, 400],
