@@ -11,6 +11,7 @@ venv/
 
 # Generated outputs
 outputs/
+docs-site/site/
 
 # Keep one sample dataset, ignore other CSV files under data
 data/*.csv
