@@ -1,6 +1,7 @@
 site_name: AutoML-AutoDL
 site_description: Documentation for a tabular AutoML and AutoDL risk modeling workspace.
 repo_name: automl-autodl
+repo_url: https://github.com/billzi2016/automl-autodl
 
 docs_dir: docs
 site_dir: site
