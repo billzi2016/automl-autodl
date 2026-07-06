@@ -8,8 +8,6 @@ on:
     paths:
       - "docs-site/**"
       - ".github/workflows/docs.yml"
-      - "README.md"
-      - "README_CN.md"
   workflow_dispatch:
 
 permissions:
